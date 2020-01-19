@@ -239,6 +239,9 @@ export DEBIAN_FRONTEND=noninteractive
 while ! apt-get -y update; do sleep 1; done
 sudo apt-get -q -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' --allow-remove-essential upgrade
 
+echo 'Set hostname'
+sudo hostnamectl set-hostname prometheus.ghn.me
+
 echo 'Mount EBS'
 sudo mkdir -p /data
 echo '/dev/xvdg  /data  ext4  defaults,nofail  0  2' | sudo tee -a /etc/fstab
