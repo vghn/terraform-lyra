@@ -209,13 +209,6 @@ resource "cloudflare_record" "prometheus" {
   type    = "CNAME"
 }
 
-resource "cloudflare_record" "logs" {
-  zone_id = var.cloudflare_zone_id
-  name    = "logs"
-  value   = data.null_data_source.prometheus.outputs["public_dns"]
-  type    = "CNAME"
-}
-
 resource "aws_instance" "prometheus" {
   instance_type               = "t2.micro"
   ami                         = data.aws_ami.prometheus.id
